@@ -4,6 +4,10 @@ from .models import Category, Product, Cart , CartItem, Order, OrderItem
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.conf import settings
+from django.contrib.auth.models import Group, User
+from .forms import SignUpForm, ContactForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
 def home(request, category_slug=None):
@@ -184,3 +188,24 @@ def signupView(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def signinView(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                return redirect('signup')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'signin.html', {'form': form})
+
+
+def signoutView(request):
+    logout(request)
+    return redirect('signin')
