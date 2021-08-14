@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.menu_links',
+                'store.context_processors.counter',
             ],
         },
     },
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gr'
 
 TIME_ZONE = 'UTC'
 
@@ -130,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL=  '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51JOM5hBb85XRK99SeUtdCmZWFKxL6b16hCrKkam97HCSypKCJaxAbiYWxGyvbb0MUO9KVtrBUQAnN2VQ1KT6PH1B00Rd9tglkL'
+STRIPE_SECRET_KEY = 'sk_test_51JOM5hBb85XRK99SKKLlzaPWfqlerPEnVkk00QA0nuthhZ8drThlhJSOaTx6BNrMHHazdoNmWptVIzxb9OyBczTb006CcGbJOw'

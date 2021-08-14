@@ -14,7 +14,7 @@ Product
       <div>
         <h1 class="product_title">{{product.name}}</h1>
         <h5 class="text-info font-italic mb-3">
-          <span class="mr-1">$</span> {{product.price}}
+          <span class="mr-1">€</span> {{product.price}}
         </h5>
         <p class="product_description">Product Description</p>
         <p class="text-justify product_text">{{product.description}}</p>
@@ -49,7 +49,7 @@ Product
   </div>
   {% endif %}
 
-  {% if reviews.count > 0 %}
+  <!-- {% if reviews.count > 0 %}
   <ul class="list-group list-group-flush">
    {% for review in reviews %}
        <li class="list-group-item"> <h5>{{review.user.username}}</h5>
@@ -58,7 +58,7 @@ Product
    {% endfor %}
  </ul>
 
-  {% endif %}
+  {% endif %} -->
 
 
 </div>
