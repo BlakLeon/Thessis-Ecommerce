@@ -143,4 +143,8 @@ EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'postmaster@techme.elefments.me'
-EMAIL_HOST_PASSWORD = '1d6b4eb2ec594e5b30df934addd17132d-9776af14-2cb5df34'
+EMAIL_HOST_PASSWORD = 'd6b4eb2ec594e5b30df934addd17132d-9776af14-2cb5df34'
+
+MAILGUN_KEY = '490415bcebfdfc0d5b2857e448544b47-9776af14-fb56330c'
+MAILGUN_URL = 'https://api.eu.mailgun.net/v3/techme.elefments.me'
+

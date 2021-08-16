@@ -9,6 +9,9 @@ from .forms import SignUpForm, ContactForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
+
 
 # Create your views here.
 def home(request, category_slug=None):
@@ -20,10 +23,6 @@ def home(request, category_slug=None):
     else: 
         products = Product.objects.all().filter(available=True)
     return render(request,'home.html',{'category':category_page, 'products': products})
-
-def about(request):
-    return render(request,'about.html')
-
 
 def signupView(request):
     if request.method == 'POST':
@@ -182,11 +181,11 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
 
                     # print a message when the order is created
                     print('the order has been created')
-            #     try:
-            #         sendEmail(order_details.id)
-            #         print('The order email has been sent')
-            #     except IOError as e:
-            #         return e
+                try:
+                    sendEmail(order_details.id)
+                    print('The order email has been sent')
+                except IOError as e:
+                    return e
 
                 return redirect('thanks_page', order_details.id)
             except ObjectDoesNotExist:
@@ -247,3 +246,52 @@ def search(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def sendEmail(order_id):
+    transaction = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order=transaction)
+
+    try:
+        subject = "TechMe Store - New Order #{}".format(transaction.id)
+        to = ['{}'.format(transaction.emailAddress)]
+        from_email = "sales@elefments.me"
+        order_information = {
+            'transaction': transaction,
+            'order_items': order_items
+        }
+        message = get_template('email/email.html').render(order_information)
+        msg = EmailMessage(subject, message, to=to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()
+    except IOError as e:
+        return e
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data.get('subject')
+            from_email = form.cleaned_data.get('from_email')
+            message = form.cleaned_data.get('message')
+            name = form.cleaned_data.get('name')
+
+            message_format = "{0} has sent you a new message:\n\n{1}".format(name, message)
+
+            msg = EmailMessage(
+                subject,
+                message_format,
+                to=['contact@elfments.me'],
+                from_email=from_email
+            )
+
+            msg.send()
+
+            return render(request, 'contact_success.html')
+
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})

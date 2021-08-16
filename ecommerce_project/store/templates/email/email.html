@@ -1,0 +1,259 @@
+{% load static %}
+
+<table class="table_full editable-bg-color bg_color_e6e6e6 editable-bg-image" bgcolor="#e6e6e6" width="100%" align="center"  mc:repeatable="castellab" mc:variant="Header" cellspacing="0" cellpadding="0" border="0">
+	<!-- header -->
+	<tr>
+		<td>
+			<!-- container -->
+			<table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#fc7c7c" width="600" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+				<!-- padding-top -->
+				<tr><td height="25"></td></tr>
+				<tr>
+					<td>
+						<!-- Inner container -->
+						<table class="table1" width="520" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+							<tr>
+								<td>
+									<!-- logo -->
+									<table width="50%" align="left" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td align="left">
+												<a href="#" class="editable-img">
+													<img editable="true" mc:edit="image001" src="{% static 'assets/img/logo/logo-let.png' %}" width="68" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="logo" />
+												</a>
+											</td>
+										</tr>
+										<tr><td height="22"></td></tr>
+									</table><!-- END logo -->
+								</td>
+							</tr>
+
+							<!-- horizontal gap -->
+							<tr><td height="60"></td></tr>
+
+							<tr>
+								<td align="center">
+									<div class="editable-img">
+										<img editable="true" mc:edit="image003" src="{% static 'assets/img/others/circle-icon-basket.png' %}"  style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="" />
+									</div>
+								</td>
+							</tr>
+
+							<!-- horizontal gap -->
+							<tr><td height="40"></td></tr>
+
+							<tr>
+								<td mc:edit="text001" align="center" class="text_color_ffffff" style="color: #ffffff; font-size: 30px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+									<div class="editable-text">
+										<span class="text_container">
+											<multiline>
+												#{{ transaction.id }} Order Details
+											</multiline>
+										</span>
+									</div>
+								</td>
+							</tr>
+
+							<!-- horizontal gap -->
+							<tr><td height="30"></td></tr>
+						</table><!-- END inner container -->
+					</td>
+				</tr>
+				<!-- padding-bottom -->
+				<tr><td height="60"></td></tr>
+			</table><!-- END container -->
+		</td>
+	</tr>
+	
+	<!-- body -->
+	<tr>
+		<td>
+			<!-- container -->
+			<table class="table1 editable-bg-color bg_color_ffffff" bgcolor="#ffffff" width="600" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+				<!-- padding-top -->
+				<tr><td height="60"></td></tr>
+
+				<tr>
+					<td>
+						<!-- inner container -->
+						<table class="table1" width="520" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+														
+							<tr>
+								<td mc:edit="text003" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 18px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+									<div class="editable-text">
+										<span class="text_container">
+											<multiline>Hello {{ transaction.billingName }} here is Your Order ,</multiline>
+										</span>
+									</div>
+								</td>
+							</tr>
+							
+							<!-- horizontal gap -->
+							<tr><td height="10"></td></tr>
+
+							<tr>
+								<td mc:edit="text004" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+									<div class="editable-text" style="line-height: 2;">
+										<span class="text_container">
+											<multiline>
+												Here is a summary of your recent order. You can also view your order in the <storng>|Order History|</strong> section of your <strong><a href="{% url 'signin' %}">Account</a></strong>.Otherwise <a href="{% url 'signup' %}">sign up</a>
+                                                    to create a new account with us.</p>
+											</multiline>
+										</span>
+									</div>
+								</td>
+							</tr>
+
+							<!-- horizontal gap -->
+							<tr><td height="50"></td></tr>
+							<!-- product-1 -->
+                            {% for item in order_items %}
+							<tr>
+								<td>
+									<!-- column-1  -->
+									<table class="table1-2" width="125" align="left" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td align="center">
+												<a href="#" style="border-style: none !important; display: block; border: 0 !important;" class="editable-img">
+													<img editable="true" mc:edit="image004" src="{% static 'assets/img/others/glob_prod_img.png' %}" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="" />
+												</a>
+											</td>
+										</tr>
+										<!-- margin-bottom -->
+										<tr><td height="30"></td></tr>
+									</table><!-- END column-1 -->
+
+									<!-- vertical gap -->
+									<table class="tablet_hide" width="40" align="left" border="0" cellspacing="0" cellpadding="0">
+										<tr><td height="1"></td></tr>
+									</table>
+
+									<!-- column-2  -->
+									<table class="table1-2" width="355" align="left" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td mc:edit="text005" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 14px; font-weight: 600; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+												<div class="editable-text">
+													<span class="text_container">
+														<multiline>
+															{{ item.product }}
+														</multiline>
+													</span>
+												</div>
+											</td>
+										</tr>
+										<!-- horizontal gap -->
+										<tr><td height="5"></td></tr>
+
+										<!-- horizontal gap -->
+										<tr><td height="10"></td></tr>
+										<tr>
+											<td>
+												<!-- sub-column-1  -->
+												<table class="table1-2" align="left" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td mc:edit="text007" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 12px; font-weight: 600; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>PRICE</multiline>
+																</span>
+															</div>
+														</td>
+
+														<td width="10"></td>
+
+														<td mc:edit="text008" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 12px; font-weight: 600; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>QTY</multiline>
+																</span>
+															</div>
+														</td>
+
+														<td width="10"></td>
+
+														<td mc:edit="text009" align="left" class="center_content text_color_282828" style="color: #282828; font-size: 12px; font-weight: 600; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>SUBTOTAL</multiline>
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr><td height="5"></td></tr>
+													<tr>
+														<td mc:edit="text010" align="left" class="center_content text_color_303f9f" style="color: #303f9f; font-size: 12px; font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>{{ item.price }}</multiline>
+																</span>
+															</div>
+														</td>
+
+														<td width="10"></td>
+
+														<td mc:edit="text011" align="left" class="center_content text_color_303f9f" style="color: #303f9f; font-size: 12px; font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>{{ item.quantity }}</multiline>
+																</span>
+															</div>
+														</td>
+
+														<td width="10"></td>
+
+														<td mc:edit="text012" align="left" class="center_content text_color_303f9f" style="color: #303f9f; font-size: 12px; font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+															<div class="editable-text">
+																<span class="text_container">
+																	<multiline>{{ item.sub_total }}</multiline>
+																</span>
+															</div>
+														</td>
+													</tr>
+													<!-- margin-bottom -->
+													<tr><td height="20"></td></tr>
+												</table><!-- END sub-column-1 -->
+
+												<!-- vertical gap -->
+												<table class="tablet_hide" width="40" align="left" border="0" cellspacing="0" cellpadding="0">
+													<tr><td height="1"></td></tr>
+												</table>
+
+												
+											</td>
+										</tr>
+                                        {%endfor%}
+                                        <!-- sub-column-2 -->
+												<table class="table1-2" align="right" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td>
+															<table class="button_bg_color_303f9f center_button" bgcolor="#303f9f" width="80" height="30" align="center" border="0" cellpadding="0" cellspacing="0" style="background-color:#303f9f; border-radius:3px;">
+																<tr>
+																	<td mc:edit="text013" align="center" valign="middle" style="color: #ffffff; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;" class="text_color_282828">
+																		<div class="editable-text">
+																			<span class="text_container">
+																				<multiline>
+																					<a href="" style="text-decoration: none; color: #ffffff;">{{ transaction.total }}</a>
+																				</multiline>
+																			</span>
+																		</div>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table><!-- END sub-column-2 -->	
+										<!-- margin-bottom -->
+										<tr><td height="30"></td></tr>
+									</table><!-- END column-2 -->
+								</td>
+							</tr>
+
+						</table><!-- END inner container -->
+					</td>
+				</tr>
+				<!-- padding-bottom -->
+				<tr><td height="30"></td></tr>
+			</table><!-- END container -->
+		</td>
+	</tr>
+</table><!-- END wrapper -->
