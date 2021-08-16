@@ -5,65 +5,119 @@ Product
 {% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <div class="row mt-5">
-    <div class="col-10 mx-auto col-md-6 my-3">
-      <img src="{{product.image.url}}" alt="">
-    </div>
-    <div class="col-10 mx-auto col-md-6 my-3">
-      <div>
-        <h1 class="product_title">{{product.name}}</h1>
-        <h5 class="text-info font-italic mb-3">
-          <span class="mr-1">€</span> {{product.price}}
-        </h5>
-        <p class="product_description">Product Description</p>
-        <p class="text-justify product_text">{{product.description}}</p>
-        {% if product.stock <= 0 %}
-        <p class="text-justify product_text"><b>Out of Stock</b></p>
-        {% else %}
-        <a href="{% url 'add_cart' product.id %}">
-          <button type="button" name="button" class="btn btn-secondary">
-            Add to Cart
-          </button>
-          </a>
-        {% endif %}
+    <!-- breadcrumbs area start -->
+    <div class="breadcrumbs_aree breadcrumbs_bg mb-100" data-bgimg="{% static 'assets/img/bg/hero-bg.jpg' %}">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="breadcrumbs_text">
+                      <h1>{{product.name}}</h1>
+                      <ul>
+                          <li><a href="{% url 'home'%}">Home </a></li>
+                          <li> //  {{product.category}} </li>
+                          <li> //  {{product.name}} </li
+                      </ul>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
+  <!-- breadcrumbs area end -->
 
-  <div class="card">
-  <div class="card-header">
-    <h4>Reviews</h4>
-  </div>
-  {% if user.is_authenticated %}
-  <div class="card-body">
-    <form method="post">
-      {% csrf_token %}
-      <div class="form-group">
-        <textarea name="content" class="form-control"></textarea>
+  <!-- single product section start-->
+  <div class="single_product_section mb-100">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <div class="gallery_img_list">
+                      <img src="{{product.image.url}}" alt="">
+                  </div>
+              </div>
+      <div class="col-lg-6 col-md-6">
+          <ul class="product_details_sidebar">
+              <h2 class="product__title">{{product.name}}</h2>
+              <ul class="nav justify-content-center"></ul>
+              <li>
+                <a class="active" data-bs-toggle="tab" href=""
+                    aria-controls="">Description</a>
+              </li>
+            </ul>
+              <div class="tab-pane fade show active" id="description" role="tabpanel">
+                <div class="product_tab_desc">
+                    <p>{{product.description}}</p>
+                </div>
+              </div>
+              <div class="price_box">
+                  <span class="current_price">€ {{product.price}}</span>
+              </div>
+              <div class="product_pro_button quantity d-flex align-items-center">
+                  <a class="add_to_cart " href="{% url 'add_cart' product.id %}">add to cart</a>
+              </div>
+          </div>
       </div>
-      <div class="form-group">
-      <button type="submit" class="btn btn-success">Post</button>
       </div>
-    </form>
   </div>
-  {% endif %}
+  </div>
+  </div>
+  <!-- product details section end-->
 
-  <!-- {% if reviews.count > 0 %}
-  <ul class="list-group list-group-flush">
-   {% for review in reviews %}
-       <li class="list-group-item"> <h5>{{review.user.username}}</h5>
-       <p class="card-text">{{review.content}}</p>
-       </li>
-   {% endfor %}
- </ul>
-
-  {% endif %} -->
-
-
-</div>
-
-</div>
-
+  <!-- product tab section start -->
+  <div class="product_tab_section mb-80">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="product_tab_navigation">
+                      <ul class="nav justify-content-center">
+                          <li>
+                              <a data-bs-toggle="tab" href="#reviews" aria-controls="reviews">Reviews </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="product_page_content_inner tab-content">
+                      <div class="col-12 " id="reviews" role="tabpanel">
+                          <div class="reviews__wrapper">
+                              <h2>Write Your Own Review</h2>
+                              <div class="customer__reviews d-flex justify-content-between mb-20">
+                                  <div class="customer_reviews_left">
+                                      <div class="comment__title">
+                                          <h2>Add a review </h2>
+                                          <p>Your email address will not be published. Required fields are marked
+                                          </p>
+                                      </div>
+                                  </div>
+                                  {% if reviews.count > 0 %}
+                                  <div class="customer_reviews_right">
+                                    {% for review in reviews %}
+                                      <h2 class="reviews__title">{{review.user.username}}</h2>
+                                      <div class="reviews__desc">
+                                          <p>{{review.content}}.</p>
+                                      </div>
+                                      {% endfor %}
+                                  </div>
+                                  {% endif %}
+                              </div>
+                              {% if user.is_authenticated %}
+                              <div class="product_review_form">
+                                  <form method="post">
+                                    {% csrf_token %}
+                                      <div class="row">
+                                          <div class="col-12">
+                                              <label >Your review </label>
+                                              <textarea class="border" name="content"></textarea>
+                                          </div>
+                                      </div>
+                                      <button class="btn custom-btn text-white" data-hover="Submit"
+                                          type="submit">Submit</button>
+                                  </form>
+                              </div>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<!-- product tab section end -->
 
 {% endblock %}
