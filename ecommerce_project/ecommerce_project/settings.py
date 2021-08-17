@@ -158,7 +158,3 @@ EMAIL_HOST_PASSWORD = '01008615c49fe0dc4b8b11e926d612a8-9776af14-1673df2f'
 
 MAILGUN_KEY = '490415bcebfdfc0d5b2857e448544b47-9776af14-fb56330c'
 MAILGUN_URL = 'https://api.eu.mailgun.net/v3/techme.elefments.me'
-
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
