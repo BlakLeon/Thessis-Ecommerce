@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+import django_heroku
 
 
 
@@ -155,3 +156,6 @@ EMAIL_HOST_PASSWORD = '01008615c49fe0dc4b8b11e926d612a8-9776af14-1673df2f'
 
 MAILGUN_KEY = '490415bcebfdfc0d5b2857e448544b47-9776af14-fb56330c'
 MAILGUN_URL = 'https://api.eu.mailgun.net/v3/techme.elefments.me'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
