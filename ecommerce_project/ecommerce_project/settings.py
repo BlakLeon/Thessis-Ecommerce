@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'store',
     'stripe',
     'crispy_forms',
-    'gunicorn'
+    'gunicorn',
+    'dj_database_url',
 ]
 
 MIDDLEWARE = [
