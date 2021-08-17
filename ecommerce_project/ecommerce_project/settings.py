@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-)osqhtqrf!5@4eax43fp7lz&mg%px6-bohg+ts*%7(4cpf4$p+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','techme-gr.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1','tech-me-gr.herokuapp.com']
 
 
 # Application definition
@@ -126,7 +128,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -150,3 +158,6 @@ EMAIL_HOST_PASSWORD = '01008615c49fe0dc4b8b11e926d612a8-9776af14-1673df2f'
 MAILGUN_KEY = '490415bcebfdfc0d5b2857e448544b47-9776af14-fb56330c'
 MAILGUN_URL = 'https://api.eu.mailgun.net/v3/techme.elefments.me'
 
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
