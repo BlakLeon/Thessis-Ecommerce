@@ -255,7 +255,7 @@ def sendEmail(order_id):
     try:
         subject = "TechMe Store - New Order #{}".format(transaction.id)
         to = ['{}'.format(transaction.emailAddress)]
-        from_email = "sales@elefments.me"
+        from_email = "techme-sales@mailgun.org"
         order_information = {
             'transaction': transaction,
             'order_items': order_items
@@ -282,7 +282,7 @@ def contact(request):
             msg = EmailMessage(
                 subject,
                 message_format,
-                to=['contact@elfments.me'],
+                to=['techme@mailgun.org'],
                 from_email=from_email
             )
 

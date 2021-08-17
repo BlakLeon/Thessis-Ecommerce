@@ -142,8 +142,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'postmaster@techme.elefments.me'
-EMAIL_HOST_PASSWORD = 'd6b4eb2ec594e5b30df934addd17132d-9776af14-2cb5df34'
+EMAIL_HOST_USER = 'postmaster@sandboxb3c7aae6c3384111897f6b10ec41d04c.mailgun.org'
+EMAIL_HOST_PASSWORD = '01008615c49fe0dc4b8b11e926d612a8-9776af14-1673df2f'
 
 MAILGUN_KEY = '490415bcebfdfc0d5b2857e448544b47-9776af14-fb56330c'
 MAILGUN_URL = 'https://api.eu.mailgun.net/v3/techme.elefments.me'
